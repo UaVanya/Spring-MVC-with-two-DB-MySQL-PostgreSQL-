@@ -1,0 +1,4 @@
+CREATE TABLE public.area (
+  area_id INTEGER NOT NULL DEFAULT nextval('areas_id_seq'::regclass),
+  area SMALLINT NOT NULL
+);

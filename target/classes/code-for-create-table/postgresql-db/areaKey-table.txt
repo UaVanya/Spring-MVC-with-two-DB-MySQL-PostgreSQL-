@@ -1,0 +1,8 @@
+CREATE TABLE public.area_key (
+  id_area_key INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('area_key_id_area_key_seq'::regclass),
+  key_id CHARACTER VARYING(300) NOT NULL,
+  area_id INTEGER NOT NULL,
+  FOREIGN KEY (area_id) REFERENCES area (area_id)
+  MATCH UNKNOWN ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+CREATE INDEX fki_id_area ON area_key USING BTREE (area_id);
