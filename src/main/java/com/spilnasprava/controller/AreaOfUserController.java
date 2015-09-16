@@ -6,15 +6,18 @@ import com.spilnasprava.entity.mysql.User;
 import com.spilnasprava.entity.mysql.UserKey;
 import com.spilnasprava.entity.postgresql.Area;
 import com.spilnasprava.entity.postgresql.AreaKey;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.*;
 
-@RestController
+/**
+ * Performs in methods in Controller.
+ */
+@Controller
 @RequestMapping(value = "/")
 public class AreaOfUserController {
 
@@ -24,8 +27,14 @@ public class AreaOfUserController {
     @Autowired
     private AreaService areaService;
 
-    private ObjectMapper mapper;
-
+    /**
+     * Save user data in DB
+     *
+     * @param user
+     * @param area
+     * @return all data users
+     * @throws IOException
+     */
     @RequestMapping(value = "saveuser", produces = "application/json", method = RequestMethod.POST)
     public ModelAndView addUser(@ModelAttribute User user, @ModelAttribute Area area) throws IOException {
         String key = UUID.randomUUID().toString();
@@ -45,18 +54,29 @@ public class AreaOfUserController {
         return new ModelAndView("index", "result", getAllUsers());
     }
 
+    /**
+     * @return all data users
+     * @throws IOException
+     */
     @RequestMapping(value = "getusers", produces = "application/json", method = RequestMethod.GET)
     public ModelAndView getUsers() throws IOException {
         return new ModelAndView("index", "result", getAllUsers());
     }
 
+    /**
+     * Pulls all data user with MySQL DB and PostgreSQL DB
+     * Then compare them and unites in the Map<User, Area>
+     * Pass the created Map<User, Area>
+     *
+     * @return userMap
+     */
     public Map<User, Area> getAllUsers() {
         Map<User, Area> userMap = new HashMap<User, Area>();
         List<User> userList = userService.getAllUser();
         List<Area> areaList = areaService.getAllArea();
         for (User user : userList) {
             for (Area area: areaList){
-                if (user.getUserKey().getKey().equals(area.getAreaKeys().getKey())){
+                if (user.getUserKey().getKey().toString().equals(area.getAreaKeys().getKey().toString())){
                     userMap.put(user,area);
                     break;
                 }
@@ -64,5 +84,4 @@ public class AreaOfUserController {
         }
         return userMap;
     }
-
 }

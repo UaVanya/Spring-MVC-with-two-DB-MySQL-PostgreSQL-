@@ -27,7 +27,7 @@ public enum AreaType {
     }
 
     /**
-     * ?ompares the value of the index, and returns its value.
+     * Compares the value of the index, and returns its value.
      *
      * @param value
      * @return the value class AreaType if equal otherwise null.

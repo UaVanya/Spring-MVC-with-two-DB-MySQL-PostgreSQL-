@@ -9,9 +9,18 @@ import org.hibernate.Session;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implements interface DAO @see com.spilnasprava.business.dao.AreaDAO
+ */
 public class AreaDaoImpl extends SeesionBaseInit implements AreaDAO {
+
+    /**
+     * Get list Area from database.
+     *
+     * @return list Area
+     */
     public List<Area> getAllArea() {
-        Session session = getSessionPost();
+        Session session = getSessionPostgreSQL();
         List<Area> areaList = new ArrayList<Area>();
         List<Area> areas = (List<Area>) session.createCriteria(Area.class).list();
         List<AreaKey> areaKeys = (List<AreaKey>) session.createCriteria(AreaKey.class).list();
@@ -23,7 +32,12 @@ public class AreaDaoImpl extends SeesionBaseInit implements AreaDAO {
         return areaList;
     }
 
-    public void addArea(Area area) {
-        getSessionPost().save(area);
+    /**
+     * Save User in DB.
+     *
+     * @return list User
+     */
+    public long addArea(Area area) {
+        return (Long) getSessionPostgreSQL().save(area);
     }
 }

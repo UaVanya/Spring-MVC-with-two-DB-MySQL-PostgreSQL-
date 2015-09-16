@@ -10,7 +10,18 @@ import java.util.List;
  * Create DAO interface to work with the User
  */
 public interface UserDAO {
+    /**
+     * Get list User from database.
+     *
+     * @return list User
+     */
     List<User> getAllUser();
-    void addUser(User user);
+
+    /**
+     * Save User in DB.
+     *
+     * @param user
+     */
+    long addUser(User user);
 
     }

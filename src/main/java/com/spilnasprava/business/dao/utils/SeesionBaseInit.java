@@ -10,24 +10,24 @@ import org.springframework.beans.factory.annotation.Qualifier;
  */
 public class SeesionBaseInit {
     @Autowired
-    @Qualifier("sessionFactory")
-    private SessionFactory sessionFactory;
+    @Qualifier("sessionFactoryMySQL")
+    private SessionFactory sessionFactoryMySQL;
 
     @Autowired
     @Qualifier("sessionFactoryPostgreSQL")
-    private SessionFactory sessionFactoryPost;
+    private SessionFactory sessionFactoryPostgreSQL;
 
     /**
-     * @return Session
+     * @return Session for MySQL
      */
-    public Session getSession() {
-        return sessionFactory.getCurrentSession();
+    public Session getSessionMySQL() {
+        return sessionFactoryMySQL.getCurrentSession();
     }
 
     /**
-     * @return Session
+     * @return Session for PostgreSQL
      */
-    public Session getSessionPost() {
-        return sessionFactoryPost.getCurrentSession();
+    public Session getSessionPostgreSQL() {
+        return sessionFactoryPostgreSQL.getCurrentSession();
     }
 }

@@ -10,7 +10,18 @@ import java.util.List;
  * Create Service interface to work with the User
  */
 public interface UserService {
+    /**
+     * Get list User from database.
+     *
+     * @return list User
+     */
     public List<User> getAllUser();
-    public void addUser(User user);
+
+    /**
+     * Save User in DB.
+     *
+     * @param user
+     */
+    public long addUser(User user);
 
 }

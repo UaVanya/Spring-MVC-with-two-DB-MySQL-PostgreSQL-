@@ -9,16 +9,29 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Implements interface Service @see com.spilnasprava.business.service.UserService
+ */
 @Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDAO;
 
+    /**
+     * Get list User from database.
+     *
+     * @return list User
+     */
     public List<User> getAllUser(){
         return userDAO.getAllUser();
     }
 
-    public void addUser(User user) {
-        userDAO.addUser(user);
+    /**
+     * Save User in DB.
+     *
+     * @param user
+     */
+    public long addUser(User user) {
+        return userDAO.addUser(user);
     }
 }

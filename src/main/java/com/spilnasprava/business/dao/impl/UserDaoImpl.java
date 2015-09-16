@@ -9,10 +9,18 @@ import org.hibernate.Session;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implements interface DAO @see com.spilnasprava.business.dao.UserDAO
+ */
 public class UserDaoImpl extends SeesionBaseInit implements UserDAO {
 
+    /**
+     * Get list User from database.
+     *
+     * @return list User
+     */
     public List<User> getAllUser() {
-        Session session = getSession();
+        Session session = getSessionMySQL();
         List<User> userList = new ArrayList<User>();
         List<User> users = (List<User>) session.createCriteria(User.class).list();
         List<UserKey> userKeys = (List<UserKey>) session.createCriteria(UserKey.class).list();
@@ -24,11 +32,12 @@ public class UserDaoImpl extends SeesionBaseInit implements UserDAO {
         return userList;
     }
 
-    public void addUser(User user) {
-        try {
-            getSession().save(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    /**
+     * Save User in DB.
+     *
+     * @param user
+     */
+    public long addUser(User user) {
+        return (Long) getSessionMySQL().save(user);
     }
 }

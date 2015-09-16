@@ -1,5 +1,7 @@
 package com.spilnasprava.entity.postgresql;
 
+import com.spilnasprava.object.AreaType;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,7 +12,8 @@ import java.io.Serializable;
 @Table(name = "area")
 public class Area implements Serializable {
     private long id;
-    private byte area;
+    @Enumerated(EnumType.ORDINAL)
+    private AreaType area;
     private AreaKey areaKeys;
 
     /**
@@ -35,7 +38,7 @@ public class Area implements Serializable {
     /**
      * @return current area the area
      */
-    public byte getArea() {
+    public AreaType getArea() {
         return area;
     }
 
@@ -44,7 +47,7 @@ public class Area implements Serializable {
      *
      * @param area
      */
-    public void setArea(byte area) {
+    public void setArea(AreaType area) {
         this.area = area;
     }
 

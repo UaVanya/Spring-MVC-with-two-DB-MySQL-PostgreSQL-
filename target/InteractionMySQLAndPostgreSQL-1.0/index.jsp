@@ -35,7 +35,7 @@
         </td>
         <td width="170"><%=user.getEmail()%>
         </td>
-        <td width="170"><%=AreaType.parse(area.getArea())%>
+        <td width="170"><%=area.getArea().name()%>
         </td>
     </tr>
     <%

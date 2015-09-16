@@ -9,6 +9,17 @@ import java.util.List;
  * Create Service interface to work with the Area
  */
 public interface AreaService {
+    /**
+     * Get list Area from database.
+     *
+     * @return list Area
+     */
     List<Area> getAllArea();
-    void addArea(Area area);
+
+    /**
+     * Save User in DB.
+     *
+     * @return list User
+     */
+    long addArea(Area area);
 }

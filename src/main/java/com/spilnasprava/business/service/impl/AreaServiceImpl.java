@@ -9,16 +9,29 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Implements interface Service @see com.spilnasprava.business.service.AreaService
+ */
 @Transactional
 public class AreaServiceImpl implements AreaService {
     @Autowired
     private AreaDAO areaDAO;
 
+    /**
+     * Get list Area from database.
+     *
+     * @return list Area
+     */
     public List<Area> getAllArea() {
         return areaDAO.getAllArea();
     }
 
-    public void addArea(Area area) {
-        areaDAO.addArea(area);
+    /**
+     * Save User in DB.
+     *
+     * @return list User
+     */
+    public long addArea(Area area) {
+        return areaDAO.addArea(area);
     }
 }
